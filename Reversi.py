@@ -27,9 +27,9 @@ BRIGHTBLUE = (  0,  50, 255)
 BROWN      = (174,  94,   0)
 
 TEXTBGCOLOR1 = BRIGHTBLUE
-TEXTBGCOLOR2 = BLUE
+TEXTBGCOLOR2 = WHITE
 GRIDLINECOLOR = BLACK
-TEXTCOLOR = WHITE
+TEXTCOLOR = BLACK
 HINTCOLOR = BROWN
 
 
@@ -297,7 +297,7 @@ def drawInfo(board, playerTile, computerTile, turn):
     scores = getScoreOfBoard(board)
     scoreSurf = FONT.render("Player Score: %s    Computer Score: %s    %s's Turn" % (str(scores[playerTile]), str(scores[computerTile]), turn.title()), True, TEXTCOLOR)
     scoreRect = scoreSurf.get_rect()
-    scoreRect.bottomleft = (10, WINDOWHEIGHT - 5)
+    scoreRect.bottomleft = (10, WINDOWHEIGHT - 10)
     DISPLAYSURF.blit(scoreSurf, scoreRect)
 
 
@@ -395,20 +395,6 @@ def getValidMoves(board, tile):
                 validMoves.append((x, y))
     return validMoves
 
-
-def getScoreOfBoard(board):
-    # Determine the score by counting the tiles.
-    xscore = 0
-    oscore = 0
-    for x in range(BOARDWIDTH):
-        for y in range(BOARDHEIGHT):
-            if board[x][y] == WHITE_TILE:
-                xscore += 1
-            if board[x][y] == BLACK_TILE:
-                oscore += 1
-    return {WHITE_TILE:xscore, BLACK_TILE:oscore}
-
-
 def enterPlayerTile():
     # Draws the text and handles the mouse click events for letting
     # the player choose which color they want to be.  Returns
@@ -445,7 +431,18 @@ def enterPlayerTile():
         DISPLAYSURF.blit(oSurf, oRect)
         pygame.display.update()
         MAINCLOCK.tick(FPS)
-
+        
+def getScoreOfBoard(board):
+    # Determine the score by counting the tiles.
+    xscore = 0
+    oscore = 0
+    for x in range(BOARDWIDTH):
+        for y in range(BOARDHEIGHT):
+            if board[x][y] == WHITE_TILE:
+                xscore += 1
+            if board[x][y] == BLACK_TILE:
+                oscore += 1
+    return {WHITE_TILE:xscore, BLACK_TILE:oscore}
 
 def makeMove(board, tile, xstart, ystart, realMove=False):
     # Place the tile on the board at xstart, ystart, and flip tiles
