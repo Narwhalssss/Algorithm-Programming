@@ -21,7 +21,7 @@ Sys is one of Built-in module that python creates. This module enables the progr
 
 - **Random**
 
-Help make stuff randomized.
+In-built module of Python which is used to generate random numbers.
 ## Screenshots
 ### Start of the program
 ![Screenshot (136)](https://user-images.githubusercontent.com/114067296/213990060-57754dae-86e5-456d-beb2-0b47435d28c9.png)
